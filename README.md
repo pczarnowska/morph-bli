@@ -4,7 +4,7 @@ This repository contains the code for experiments described in the following pap
 
 - Paula Czarnowska, Sebastian Ruder, Ryan Cotterell, and Ann Copestake. 2019. **[Morphologically Aware Word-level Translation](https://aclanthology.org/2020.coling-main.256/)**. In *Proceedings of the 28th International Conference on Computational Linguistics (COLING)*.
 
-To reproduce the results for the baselines, base, hybrid and oracle models on the morphologically rich dictionaries follow the commands from the reproduce.sh script.
+To reproduce the results for the baselines, base, hybrid and oracle models on the morphologically rich dictionaries follow the commands from the code/reproduce.sh script.
 
 ## Acknowledgements
 
