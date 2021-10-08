@@ -43,8 +43,8 @@ cd ../reinflector
 ./train_analyzer.sh 0 1 2 3 analyze_data_um analyze_data_um
 
 # for all languages (uncomment if needed)
-# .train_reinfl.sh 0 3 0 3 reinfl_data_um
-# .train_analyzer.sh 0 3 0 3 analyze_data_um
+# .train_reinfl.sh 0 3 0 3 reinfl_data_um reinfl_data_um
+# .train_analyzer.sh 0 3 0 3 analyze_data_um analyze_data_um
 
 # ====== EVALUATE THE FULL MODEL (BASIC)
 # args: src_start_idx, src_end_idx, trg_start_idx,
