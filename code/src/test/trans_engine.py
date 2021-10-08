@@ -179,25 +179,25 @@ def get_translations_via_lemma(
         unknown_lemmas =\
             sum([1 if ind == 0 else 0 for ind in chosen_src_lem_inds])
 
-        print(f"acc for source lemmas: {sum([chosen_src_lems[i] in src_lemmas[i] for i in range(len(src))])/len(src)}")
-        print(f"acc for source tags: {sum([chosen_morphs[i] in morphs_src[i] for i in range(len(src))])/len(src)}")
+        print(f"acc for source lemmas: {sum([chosen_src_lems[i] in src_lemmas[i] for i in range(len(src))])/len(src):.3f}")
+        print(f"acc for source tags: {sum([chosen_morphs[i] in morphs_src[i] for i in range(len(src))])/len(src):.3f}")
 
         if args.hybrid2:  # relative + accuracy
-            print("HYBRID MODEL 2")
+            print("\nHYBRID MODEL 2")
             lem_form_zip = zip(chosen_src_lem_inds, src)
             for i, (lem_id, form_id) in enumerate(lem_form_zip):
                 if lem_id == 0 or form_id < lem_id or form_id < 25000:
                     chosen_src_lem_inds[i] = form_id
                     chosen_morphs[i] = "NFIN"
         elif args.hybrid3:  # just accuracy
-            print("HYBRID MODEL  3")
+            print("\nHYBRID MODEL 3")
             lem_form_zip = zip(chosen_src_lem_inds, src)
             for i, (lem_id, form_id) in enumerate(lem_form_zip):
                 if lem_id == 0 or form_id < 25000:
                     chosen_src_lem_inds[i] = form_id
                     chosen_morphs[i] = "NFIN"
         elif args.hybrid:
-            print("HYBRID MODEL")
+            print("\nHYBRID MODEL")
             lem_form_zip = zip(chosen_src_lem_inds, src)
             for i, (lem_id, form_id) in enumerate(lem_form_zip):
                 if lem_id == 0 or form_id < lem_id:
@@ -205,7 +205,7 @@ def get_translations_via_lemma(
                     # this means the resulting trans. wont be inflected
                     chosen_morphs[i] = "NFIN"
     else:
-        print("Oracle analyzer")
+        print("\nORACLE ANALYZER")
         chosen_src_lems, chosen_morphs, unknown_lemmas =\
             get_unique_lemmas_from_dict(opts, src_lemmas, morphs_src, x)
         chosen_src_lem_inds =\
@@ -240,7 +240,7 @@ def get_translations_via_lemma(
         print("Lemma translations:", lemma_translations[:15])
         print("Reinflected:", reinflected_translations[:15])
 
-        print(f"acc lemmas: {sum([lemma_translations[i] in trg_lemmas[i] for i in range(len(src))])/len(src)}")
+        print(f"acc lemmas: {sum([lemma_translations[i] in trg_lemmas[i] for i in range(len(src))])/len(src):.3f}")
 
         for i in range(len(src)):
             # we are only concerned with correct lemmas
@@ -293,12 +293,12 @@ def get_translations_via_lemma(
         print("SRC forms:", src_forms[:7])
         print("SRC lemmas:", chosen_src_lems[:7])
         print("TAGS:", chosen_morphs[:7])
-        print("\n")
+        print("")
         print("Lemma translations:", lemma_translations[:7])
         print("Reinflected:", reinflected_translations[:7])
 
-        print(f"acc lemmas: {sum([lemma_translations[i] in trg_lemmas[i] for i in range(len(src))])/len(src)}")
-        print(f"acc forms: {sum([reinflected_translations[i] in trg_forms[i] for i in range(len(src))])/len(src)}")
+        print(f"acc lemmas: {sum([lemma_translations[i] in trg_lemmas[i] for i in range(len(src))])/len(src):.3f}")
+        print(f"acc forms: {sum([reinflected_translations[i] in trg_forms[i] for i in range(len(src))])/len(src):.3f}")
         print(f"Uknown lemmas: {unknown_lemmas} our of {len(src)}")
         print("======================\n")
 
