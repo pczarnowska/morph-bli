@@ -114,7 +114,6 @@ class BasicEvaluator(Evaluator):
         dist = edit_distance(predict, ground_truth)
         return correct, dist
 
-
     def get_lem_and_tag(self, indxs):
         lem, tag = [], []
         to_add = tag
@@ -192,8 +191,6 @@ class BasicEvaluator(Evaluator):
         distance = round(distance / nb_sample, 4)
         if tag_predict:
             return [
-                # TODO: change this to lemma? maybe? is lemma in the paper?
-                # this also affects the training
                 Eval('acc', 'full accuracy (lem and tag)', acc),
                 Eval('acc_lem', 'lemma accuracy', acc_lem),
                 Eval('acc_tag', 'tag accuracy', acc_tag),
@@ -204,6 +201,7 @@ class BasicEvaluator(Evaluator):
                 Eval('acc', 'word accuracy', acc),
                 Eval('dist', 'average edit distance', distance)
             ]
+
 
 class MultiOptionsEvaluator(BasicEvaluator):
     def __init__(self, target_chars, source_chars):
@@ -301,8 +299,6 @@ class MultiOptionsEvaluator(BasicEvaluator):
         acc_tag = round(correct_tag / nb_sample * 100, 4)
         distance = round(distance / nb_sample, 4)
         return [
-                # TODO: change this to lemma? maybe? is lemma in the paper?
-                # this also affects the training
                 Eval('acc', 'full accuracy (lem and tag)', acc),
                 Eval('acc_lem', 'lemma accuracy', acc_lem),
                 Eval('acc_tag', 'tag accuracy', acc_tag),

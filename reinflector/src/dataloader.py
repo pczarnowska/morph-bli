@@ -319,10 +319,10 @@ class LemmaAndTagClassifier(Dataloader):
             unique=self.unique_tag))
         self.nb_dev = sum([1 for _ in self.dev_reader.get_form2lemma_tag(
             unique=self.unique_tag)])
-        if self.test_file is None:
+        if self.test_reader is None:
             self.nb_test = 0
         else:
-            self.nb_test = sum([1 for _ in self.test_file.get_form2lemma_tag(
+            self.nb_test = sum([1 for _ in self.test_reader.get_form2lemma_tag(
                 unique=self.unique_tag)])
         chars = sorted(list(char_set))
         tags = sorted(list(tag_set))

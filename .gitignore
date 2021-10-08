@@ -1,0 +1,11 @@
+code/src/__pycache__/*
+code/src/*/__pycache__/*
+reinflector/src/__pycache__/*
+coling/*
+data/*
+resources/*
+reinflector/analyze_data*
+reinflector/model*
+reinflector/reinfl_data*
+reinflector/.idea/*
+reinflector/apicache-py3/*

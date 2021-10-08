@@ -8,7 +8,7 @@ import os
 import sys
 current_dir = os.getcwd()
 print(current_dir)
-sys.path.append(f'{current_dir}/../../project_m1/code')
+sys.path.append(f'{current_dir}/../code')
 from src.utils.tag_utils import *
 
 rds_path = "/rds/user/pjc211/hpc-work/tagger/unimorph_schema.txt"

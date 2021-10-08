@@ -144,15 +144,15 @@ do
                         --out_dir $output_dir \
                         $oov_args"
 
-                    echo -n "  - $model  |  Dev Translation: "
-                    python3 $ROOT/src/test/eval_translation_dev.py ${eval_args} \
-                        --dictionary $dev_dict \
-                        --test_info $dev_test_info > $dev_res_file # --full_eval
+                    # echo -n "  - $model  |  Dev Translation: "
+                    # python3 $ROOT/src/test/eval_translation_dev.py ${eval_args} \
+                    #     --dictionary $dev_dict \
+                    #     --test_info $dev_test_info | tee $dev_res_file # --full_eval
 
                     echo -n "  - $model  |  Test Translation: "
                     python3 $ROOT/src/test/eval_translation_dev.py ${eval_args} \
                         --dictionary $test_dict \
-                        --test_info $test_test_info > $test_res_file # --full_eval
+                        --test_info $test_test_info | tee $test_res_file # --full_eval
                     echo "done $name"
                 fi
 

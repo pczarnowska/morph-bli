@@ -335,12 +335,20 @@ class Trainer(object):
         best_devloss_fp, best_devloss, _ = self.models[0]
         for fp, devloss, res in self.models:
             # [acc, edit distance ]
-            if res[0].res >= best_res[0].res and res[1].res <= best_res[1].res:
-                best_fp, best_res = fp, res
-            if res[0].res >= best_acc[0].res:
-                best_acc_fp, best_acc = fp, res
-            if devloss <= best_devloss:
-                best_devloss_fp, best_devloss = fp, devloss
+            if len(res) == 2:
+                if res[0].res >= best_res[0].res and res[1].res <= best_res[1].res:
+                    best_fp, best_res = fp, res
+                if res[0].res >= best_acc[0].res:
+                    best_acc_fp, best_acc = fp, res
+                if devloss <= best_devloss:
+                    best_devloss_fp, best_devloss = fp, devloss
+            else:
+                if res[0].res >= best_res[0].res and res[2].res <= best_res[2].res:
+                    best_fp, best_res = fp, res
+                if res[0].res >= best_acc[0].res:
+                    best_acc_fp, best_acc = fp, res
+                if devloss <= best_devloss:
+                    best_devloss_fp, best_devloss = fp, devloss
 
         self.model = None
         if best_acc:
@@ -388,7 +396,7 @@ def main():
     torch.manual_seed(opt.seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed_all(opt.seed)
-    
+
     trainer = Trainer(logger)
     trainer.load_data(
         opt.dataset, opt.train, opt.dev, opt.arch, test=opt.test,
@@ -414,7 +422,7 @@ def main():
     for epoch_idx in range(start_epoch, start_epoch + opt.epochs):
         trainer.train(epoch_idx, opt.bs, opt.max_norm)
         with torch.no_grad():
-        #    devloss = trainer.calc_loss(TRAIN, opt.bs, epoch_idx)
+            # devloss = trainer.calc_loss(TRAIN, opt.bs, epoch_idx)
             devloss = trainer.calc_loss(DEV, opt.bs, epoch_idx)
             eval_res = trainer.evaluate(DEV, epoch_idx)
         if trainer.update_lr_and_stop_early(epoch_idx, devloss, opt.estop):

@@ -9,7 +9,7 @@ outdir="$root/../model_reinfl_$datsource/monotag-$arch/$pair"
 
 if [[ -d $outdir ]]; then
     echo ""
-    echo "$outdir exists, only evaluating"
+    echo "$outdir exists, only evaluating..."
     echo ""
     model_file=$(ls ${outdir}/$pair.nll* | head -1)
     python $root/../src/train.py \
@@ -23,6 +23,9 @@ if [[ -d $outdir ]]; then
         --arch $arch --estop 1e-8 --epochs 0 --bs 20 --mono \
         --load ${model_file} 
 else
+    echo ""
+    echo "$outdir doesn't exist, training..."
+    echo ""
     python $root/../src/train.py \
         --dataset sigmorphon19task1 \
         --train $root/../$datsource/$pair.tag.train.txt  \

@@ -26,8 +26,8 @@ OUTPUT="$ROOT/../coling"
 EMB_DIR="$DATA/embeddings/original"
 
 RSET_COUNT=1
-REINFL_MODELS=("model_reinfl_reinfl_data_um")  # "model-reinfl-beyond-um (if muse)"
-ANALYSIS_MODELS=("model_analyze_analyze_data_um") # "model-analyze-beyond-um (if muse)"
+REINFL_MODELS=("model_reinfl_reinfl_data_um")  # "model_reinfl_reinfl_data_um_beyond_um" (if muse)
+ANALYSIS_MODELS=("model_analyze_analyze_data_um") # "model_analyze_analyze_data_beyond_um" (if muse)
 OUTPUT="$ROOT/../coling"
 
 LANGUAGES=('fra' 'spa' 'ita')
@@ -93,8 +93,8 @@ do
                     rm_name=${REINFL_MODELS[$m]}
                     am_name=${ANALYSIS_MODELS[$m]}
 
-                    echo "reinfl. model: " $rm_name
-                    echo "analysis model:" $am_name
+                    # echo "reinfl. model: " $rm_name
+                    # echo "analysis model:" $am_name
 
                     rm_source="$REINFLROOT/${rm_name}/monotag-hmmfull"
                     am_source="$REINFLROOT/${am_name}/monotag-hmmfull"
@@ -132,47 +132,47 @@ do
                     if [[ $7 == 0 ]]; then
     #                    python3 "$ROOT/src/test/eval_translation_dev.py" --filter_dict ";" --dictionary $dev_dict --test_info $dev_test_info $args1 $args2 $args3 $args4 $oov_args > "$dev_res_file"
     #                    python3 "$ROOT/src/test/eval_translation_dev.py" --filter_dict "ADJ"   --dictionary $test_dict --test_info $test_test_info $args1 $args2 $args3 $args4 $oov_args > "$test_res_file" #$oov_args # > "$dev_res_file"
-                        echo -n "  - SGD reinfl + analysis|  Dev Translation: "
-                        python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
-                            --dictionary $dev_dict \
-                            --test_info $dev_test_info \
-                            --reinflection_models_dir $rm_source/$src-$trg \
-                            --analysis_models_dir $am_source/$src-$trg #> $dev_res_file
+                        # echo -n "  - SGD reinfl + analysis |  Dev Translation: "
+                        # python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
+                        #     --dictionary $dev_dict \
+                        #     --test_info $dev_test_info \
+                        #     --reinflection_models_dir $rm_source/$src-$trg \
+                        #     --analysis_models_dir $am_source/$src-$trg | tee $dev_res_file
 
-                        echo -n "  - SGD reinfl + analysis|  Test Translation: "
+                        echo -n "  - SGD reinfl + analysis |  Test Translation: "
                         python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
                             --dictionary $test_dict \
                             --test_info $test_test_info \
                             --reinflection_models_dir $rm_source/$src-$trg \
-                            --analysis_models_dir $am_source/$src-$trg > $test_res_file 
+                            --analysis_models_dir $am_source/$src-$trg | tee $test_res_file 
                     elif [[ $7 == 1 ]]; then
-                        echo -n "  - SGD reinfl + analysis (hybrid)|  Dev Translation: "
-                        python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
-                            --hybrid  \
-                            --dictionary $dev_dict \
-                            --test_info $dev_test_info \
-                            --reinflection_models_dir $rm_source/$src-$trg \
-                            --analysis_models_dir $am_source/$src-$trg #> $dev_res_file
+                        # echo -n "  - SGD reinfl + analysis (hybrid) |  Dev Translation: "
+                        # python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
+                        #     --hybrid  \
+                        #     --dictionary $dev_dict \
+                        #     --test_info $dev_test_info \
+                        #     --reinflection_models_dir $rm_source/$src-$trg \
+                        #     --analysis_models_dir $am_source/$src-$trg | tee $dev_res_file
                         
-                        echo -n "  - SGD reinfl + analysis (hybrid)|  Test Translation: "
+                        echo -n "  - SGD reinfl + analysis (hybrid) |  Test Translation: "
                         python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
                             --hybrid  \
                             --dictionary $test_dict \
                             --test_info $test_test_info \
                             --reinflection_models_dir $rm_source/$src-$trg \
-                            --analysis_models_dir $am_source/$src-$trg > $test_res_file
+                            --analysis_models_dir $am_source/$src-$trg | tee $test_res_file
                     elif [[ $7 == 2 ]]; then
-                        echo -n "  - SGD reinfl (no analysis)|  Dev Translation: "
-                        python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
-                            --dictionary $dev_dict \
-                            --test_info $dev_test_info \
-                            --reinflection_models_dir $rm_source/$src-$trg #> $dev_res_file
+                    #     echo -n "  - SGD reinfl (no analysis) |  Dev Translation: "
+                    #     python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
+                    #         --dictionary $dev_dict \
+                    #         --test_info $dev_test_info \
+                    #         --reinflection_models_dir $rm_source/$src-$trg | tee $dev_res_file
 
-                        echo -n "  - SGD reinfl (no analysis)|  Test Translation: "
+                        echo -n "  - SGD reinfl (no analysis) |  Test Translation: "
                         python3 "$ROOT/src/test/eval_translation_dev.py"  ${eval_args} \
                             --dictionary $test_dict \
                             --test_info $test_test_info \
-                            --reinflection_models_dir $rm_source/$src-$trg > $test_res_file
+                            --reinflection_models_dir $rm_source/$src-$trg | tee $test_res_file
                             # no analysis argument
                     fi
                 done

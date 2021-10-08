@@ -65,7 +65,7 @@ def main():
     parser.add_argument('--trg_lang')
     parser.add_argument('--test_info')
     parser.add_argument('--out_dir')
-    parser.add_argument('--filter_dict', default=[";"], type=lambda x: [i for i in x.split("|")])
+    parser.add_argument('--filter_dict', default=[], type=lambda x: [i for i in x.split("|")])
     parser.add_argument('--reverse_dict', action='store_true')
 
     # These are necessary to add OOV words into the evaluation
