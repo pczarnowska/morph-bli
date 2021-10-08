@@ -68,7 +68,7 @@ cat ../coling/fra-ita/morph_dictionaries/sgd/test-results-morph_dictionaries-mod
 echo "sgd (hybrid)"
 cat ../coling/fra-ita/morph_dictionaries/sgd/test-results-morph_dictionaries-hybrid-model_reinfl_reinfl_data_um-model_analyze_analyze_data_um.txt 
 echo "sgd (oracle)"
-cat ../coling/fra-ita/morph_dictionaries/sgd/test-results-morph_dictionaries-model_reinfl_reinfl_data_um-model_analyze_analyze_data_um-noana.txt 
+cat ../coling/fra-ita/morph_dictionaries/sgd/test-results-morph_dictionaries-model_reinfl_reinfl_data_um-noana.txt 
 
 # all languages (uncomment if needed)
 # ./morph_evaluate.sh 0 3 0 3 0 1 0
