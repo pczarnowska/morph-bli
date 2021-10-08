@@ -140,7 +140,7 @@ def analyse(model_source, forms):
         try:
             tag = ';'.join(sorted(tag[0].split(";")))
         except:
-            print("problem", lem, tag)
+            # print("problem", lem, tag)
             tag = "NFIN"
 
         return ''.join(lem), tag

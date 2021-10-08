@@ -236,7 +236,7 @@ def get_translations_via_lemma(
         print("SRC forms:", src_forms[:15])
         print("SRC lemmas:", chosen_src_lems[:15])
         print("TAGS:", chosen_morphs[:15])
-        print("\n")
+        print("")
         print("Lemma translations:", lemma_translations[:15])
         print("Reinflected:", reinflected_translations[:15])
 
@@ -314,8 +314,8 @@ def get_translations_via_lemma(
             if lem_ok and not form_ok:
                 mess_up += 1
                 messed_up_forms[chosen_morphs[i]] += 1
-        print("Mess up: ", mess_up, " out of", cor_lem)
-        print(messed_up_forms)
+        # print("Mess up: ", mess_up, " out of", cor_lem)
+        # print(messed_up_forms)
 
         forms_ids = get_forms_ids(args, None, reinflected_translations, trgd)
         return dict(zip(src, forms_ids))

@@ -8,7 +8,7 @@ def get_best_model_file(models_dir):
     if models_dir is None:
         return None
 
-    print("\n--", models_dir)
+    # print("\n--", models_dir)
     fpaths = get_file_paths(models_dir, in_name="epoch")
 
     best_acc, best_file = 0, ""
@@ -26,7 +26,7 @@ def get_best_model_file(models_dir):
                     best_acc = acc
             except:
                 continue
-    print(f"Best found model acc: {best_acc}")
+    # print(f"Best found model acc: {best_acc}")
     return best_file
 
 

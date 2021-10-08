@@ -654,9 +654,9 @@ def get_translations(
         args, opts, x, z, src, src2trg, good_inds,
         srctrg2info, chunk_size, xp, dtype):
     if args.reinflection_model:
-        if args.lemma_filter is None:
-            print("WARNING. Reinflection model applied to not " +
-                  "filtered embeddings!")
+        # if args.lemma_filter is None:
+        #     print("WARNING. Reinflection model applied to not " +
+        #           "filtered embeddings!")
 
         if srctrg2info is not None:
             better_inds = get_good_inds_only_lemma(
